@@ -59,10 +59,10 @@ let numbers=[1,2,3,4,5]
    {
      for (let i =0;i < n;i++)
      {
-      return callback()
+       callback()
      }
      
    }
    function action()
-   { return "Hi"}
+   { console.log( "Hi")}
    console.log(repeatAction(action,5))
