@@ -1,0 +1,78 @@
+
+  
+console.log("one");
+
+setTimeout(() => {
+  console.log("two");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("three");
+});
+console.log("four");
+//one ,four,three,two
+
+new Promise((resolve, reject) => {
+  console.log('First');
+  setTimeout(() => {
+    console.log('Second');
+    resolve();
+  }, 0);
+}).then(() => {
+  console.log('Third');
+});
+
+//first,second,third
+
+Promise.resolve().then(() => {
+  console.log('Promise A');
+});
+console.log('End');
+
+
+
+//end,Promise A
+
+setTimeout(() => {
+  console.log('Timer Done');
+}, 0);
+Promise.resolve().then(() => {
+  console.log('Microtask Done');
+});
+console.log('Script End');
+
+//Script End
+//Microtask Done
+//Timer Done
+
+Promise.resolve('Hi')
+  .then(data => {
+    console.log(data);
+    throw new Error('Oops');
+  })
+  .catch(err => {
+    console.log(err.message);
+  });
+
+  //hi,oops
+
+  Promise.reject('Fail')
+  .catch(err => {
+    console.log('Caught:', err);
+    return 'Recovered';
+  })
+  .then(res => {
+    console.log('Then after catch:', res);
+  });
+  //caught fail
+  //thanaftercatch recovered
+
+  Promise.resolve()
+  .then(() => {
+    console.log('First');
+    return Promise.resolve();
+  })
+  .then(() => {
+    console.log('Second');
+  });
+  //first second

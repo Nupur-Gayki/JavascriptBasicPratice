@@ -15,15 +15,16 @@ test();
 //undefined
 let a = 5;
 function outer() {
-  let a = 10;
+  
   function inner() {
     console.log(a);
   }
+  //let a = 10;
   return inner;
 }
 const fn = outer();
 fn();
-//Identifier 'a' has already been declared
+//10
 
 const a = 10;
 a = 20;

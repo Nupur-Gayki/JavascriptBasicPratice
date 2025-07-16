@@ -1,0 +1,20 @@
+console.log('A');
+setTimeout(() => console.log('B'), 1000);
+setTimeout(() => console.log('C'), 0);
+console.log('D');
+//a,d,c,b
+
+setTimeout(() => console.log('Timeout 1'), 0);
+setTimeout(() => console.log('Timeout 2'), 0);
+console.log('Synchronous');
+// Synchronous,Timeout 1,Timeout 2
+
+const promise = new Promise((resolve, reject) => {
+  console.log('Inside Promise');
+  resolve(5);
+});
+promise.then(val => console.log('Resolved with', val));
+console.log('Outside Promise');
+//Inside Promise
+///Outside Promise
+///Resolved with 5

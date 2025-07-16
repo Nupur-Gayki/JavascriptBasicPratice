@@ -1,0 +1,62 @@
+Promise.resolve().then(() => {
+  console.log('Then 1');
+}).then(() => {
+  console.log('Then 2');
+});
+console.log('Sync');
+
+//sync,then 1,then 2
+new Promise((resolve, reject) => {
+  resolve('Done');
+}).then(data => {
+  console.log(data);
+});
+//Done 
+
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timer");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("Promise 1");
+
+}).then(() => {
+  console.log("Promise 2");
+});
+console.log("End");
+//start,end,Promise 1,promise 2,timer
+
+Promise.resolve(1)
+  .then((x) => {
+    console.log(x);
+    return x + 1;
+  })
+  .then((x) => {
+    console.log(x);
+  });
+  //1,2
+
+  Promise.reject('Error')
+  .then(() => {
+    console.log('Success');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+  //error
+
+  Promise.resolve('First')
+  .then(data => {
+    console.log(data);
+    return Promise.resolve('Second');
+  })
+  .then(data => {
+    console.log(data);
+  });
+  //first second
+
+  Promise.resolve().then(() => console.log('A'));
+console.log('B');
+//b a 
